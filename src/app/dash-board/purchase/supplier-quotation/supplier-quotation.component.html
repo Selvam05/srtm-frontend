@@ -1,0 +1,230 @@
+<div class="wrapper1">
+    <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Supplier Quotation</legend>
+        <div class="formData">
+            <form [formGroup]="PurchaseQuotationForm"
+                (ngSubmit)="onSupplierQuotationClick($event, PurchaseQuotationForm)">
+                <div class="row">
+                    <div class="col-xs-1 col-sm-1"></div>
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label path="supplierSlno" for="supplierSlno" cssClass="required">Supplier Name</label>
+                            <select class="form-control" path="supplierSlno" formControlName="supplierSlno">
+                                <option value="" hidden> - Select the Supplier Name - </option>
+                                <option value="null"> - Select the Supplier Name - </option>
+                                <option *ngFor="let supplierreg of supplierregs;" [value]='supplierreg.slNo'>
+                                    {{supplierreg.supplierName}}</option>
+                            </select>
+                            <div *ngIf="submitted && f.supplierSlno.errors" class="invalid-feedback">
+                                <div *ngIf="f.supplierSlno.errors.required">
+                                    Supplier Name is Required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <div class="form-group">
+                                <label path="address" for="address" cssClass="required">Address</label>
+                                <textarea class="form-control" rows="3" cols="1" path="address"
+                                    formControlName="address">
+                                </textarea>
+                                <div *ngIf="submitted && f.address.errors" class="invalid-feedback">
+                                    <div *ngIf="f.address.errors.required">
+                                        Address is Required
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label path="quotationNo" for="quotationNo" cssClass="required">Quotation No</label>
+                            <input type="text" class="form-control" path="quotationNo" formControlName="quotationNo" />
+                            <div *ngIf="submitted && f.quotationNo.errors" class="invalid-feedback">
+                                <div *ngIf="f.quotationNo.errors.required">
+                                    Quotation No is Required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 col-sm-1"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-1 col-sm-1"></div>
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <div class="p-fluid p-grid p-formgrid">
+                                <div class="p-field p-col-12 p-md-5">
+                                    <label path="quotationDate" for="quotationDate" cssClass="required">Quotation
+                                        Date</label>
+                                    <p-calendar [monthNavigator]="true" [yearNavigator]="true"
+                                        formControlName="quotationDate" [minDate]="minDate" [maxDate]="maxDate"
+                                        yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                    </p-calendar>
+                                    <div *ngIf="submitted && f.quotationDate.errors" class="invalid-feedback">
+                                        <div *ngIf="f.quotationDate.errors.required">
+                                            Quotation Date is Required
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <div class="p-fluid p-grid p-formgrid">
+                                <div class="p-field p-col-12 p-md-5">
+                                    <label path="validity" for="validity" cssClass="required">Validity</label>
+                                    <p-calendar [monthNavigator]="true" [yearNavigator]="true"
+                                        formControlName="validity" [minDate]="minDate" [maxDate]="maxDate"
+                                        yearRange="2000:2030" inputId="navigators" [showIcon]="true" inputId="icon">
+                                    </p-calendar>
+                                    <div *ngIf="submitted && f.validity.errors" class="invalid-feedback">
+                                        <div *ngIf="f.validity.errors.required">Validity is Required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label path="purchasereqSlno" for="purchasereqSlno" cssClass="required">Product Name</label>
+                            <select class="form-control" path="purchasereqSlno" formControlName="purchasereqSlno">
+                                <option value="" hidden> - Select the Product Name - </option>
+                                <option value="null"> - Select the Product Name - </option>
+                                <option *ngFor="let purchasereq of purchasereqs;" [value]='purchasereq.slNo'>
+                                    {{purchasereq.sparenameSlno2?.spares}}
+                                </option>
+                            </select> 
+                            <div *ngIf="submitted && f.purchasereqSlno.errors" class="invalid-feedback">
+                                <div *ngIf="f.purchasereqSlno.errors.required">
+                                    Product Name is Required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 col-sm-1"></div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-1 col-sm-1"></div>
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label path="description" for="description" cssClass="required">Description</label>
+                            <textarea class="form-control" rows="3" cols="1" path="description"
+                                formControlName="description">
+                            </textarea>
+                            <div *ngIf="submitted && f.description.errors" class="invalid-feedback">
+                                <div *ngIf="f.description.errors.required">
+                                    Description is Required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label path="quantity" for="quantity" cssClass="required">Quantity</label>
+                            <input type="text" class="form-control" path="quantity" formControlName="quantity" />
+                            <div *ngIf="submitted && f.quantity.errors" class="invalid-feedback">
+                                <div *ngIf="f.quantity.errors.required">
+                                    Quantity is Required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <div class="p-fluid p-grid p-formgrid">
+                                <div class="p-field p-col-12 p-md-5">
+                                    <label path="price" for="price" cssClass="required">Price</label>
+                                    <input type="text" class="form-control" path="price" formControlName="price" />
+                                    <div *ngIf="submitted && f.price.errors" class="invalid-feedback">
+                                        <div *ngIf="f.price.errors.required">Price is Required</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 col-sm-1"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1 col-sm-1"></div>
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label path="personName" for="personName" cssClass="required">Contact Person Name</label>
+                            <input type="text" class="form-control" path="personName" formControlName="personName" />
+                            <div *ngIf="submitted && f.personName.errors" class="invalid-feedback">
+                                <div *ngIf="f.personName.errors.required">
+                                    productName is Required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label path="Remarks" for="Remarks" cssClass="required">Phone No</label>
+                            <input type="text" class="form-control" path="Remarks" formControlName="number" />
+                            <div *ngIf="submitted && f.number.errors" class="invalid-feedback">
+                                <div *ngIf="f.number.errors.required">
+                                    Phone Number is Required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <label path="Remarks" for="Remarks" cssClass="required">Mail Id</label>
+                            <input type="text" class="form-control" path="Remarks" formControlName="mailId" />
+                            <div *ngIf="submitted && f.mailId.errors" class="invalid-feedback">
+                                <div *ngIf="f.mailId.errors.required">
+                                    Mail Id is Required
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-1 col-sm-1"></div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-1 col-sm-1"></div>
+                    <div class="col-xs-3 col-sm-3">
+                        <div class="form-group">
+                            <div class="p-fluid p-grid p-formgrid">
+                                <div class="p-field p-col-12 p-md-5">
+                                    <label path="termsCondition" for="termsCondition" cssClass="required">Terms and
+                                        Conditions</label>
+                                    <textarea class="form-control" rows="3" cols="1" path="termsCondition"
+                                        formControlName="termsCondition">
+                                    </textarea>
+                                    <div *ngIf="submitted && f.termsCondition.errors" class="invalid-feedback">
+                                        <div *ngIf="f.termsCondition.errors.required">Terms and Condition is Required
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="row">
+                    <div class="col-sm-10">
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary submit">Submit</button>
+                            <button type="button" class="btn btn-warning reset" (click)="onReset()">Clear</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </fieldset>
+</div>
+<div class="scrollbar">
+    <fieldset class="scheduler-border">
+        <legend class="scheduler-border">Supplier Quotation</legend>
+        <ag-grid-angular #agGrid class="ag-theme-balham" [gridOptions]="gridOptions" style="width: 100%; height: 350px;"
+            [pagination]="true" [frameworkComponents]="frameworkComponents">
+        </ag-grid-angular>
+    </fieldset>
+</div>
